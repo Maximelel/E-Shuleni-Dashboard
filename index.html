@@ -14,38 +14,49 @@
         }
 
         h1 {
-            margin: 20px 0;
+            margin: 10px 0;
             color: #333;
         }
 
-        .plot-container {
+        /* Flex container for first plot and image */
+        .top-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px 0;
+            gap: 10px; /* Space between iframe and image */
+            padding: 10px;
         }
 
-        .plot-container iframe {
+        .top-container iframe {
+            width: 65%;
+            height: 400px;
             border: none;
-            width: 80%;
-            height: 200px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
             background-color: white;
         }
 
+        .priority-image {
+            width: 30%; /* Adjust width to fit beside iframe */
+            max-width: 350px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Grid container for two side-by-side plots */
         .grid-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
-            padding: 1dvb;
+            padding: 10px;
         }
 
         .grid-container iframe {
             flex: 1;
             min-width: 45%;
-            height: 400px;
+            height: 500px;
             border: none;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             background-color: white;
@@ -53,10 +64,18 @@
 
         /* Responsive layout */
         @media (max-width: 900px) {
+            .top-container {
+                flex-direction: column;
+            }
+
+            .top-container iframe, .priority-image {
+                width: 80%;
+            }
+
             .grid-container {
                 flex-direction: column;
             }
-            
+
             .grid-container iframe {
                 width: 80%;
                 min-width: auto;
@@ -67,9 +86,10 @@
 <body>
     <h1>E-Shuleni Pilot 2025: Learning Progress</h1>
 
-    <!-- Centered first plot -->
-    <div class="plot-container">
+    <!-- Container for first plot and image -->
+    <div class="top-container">
         <iframe src="./plots/student_performance_priority.html"></iframe>
+        <img src="./images/priority_groups.png" alt="Performance Priority Levels" class="priority-image">
     </div>
 
     <!-- Two side-by-side plots -->
