@@ -4,12 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Shuleni Learning Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .plot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .plot-container iframe {
+            border: none;
+            width: 80%;
+            height: 600px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .grid-container iframe {
+            flex: 1;
+            min-width: 45%;
+            height: 600px;
+            border: none;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 900px) {
+            .grid-container {
+                flex-direction: column;
+            }
+            
+            .grid-container iframe {
+                width: 80%;
+                min-width: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>E-Shuleni Pilot 2025: Learning Progress</h1>
 
-    <!-- Embed the Plotly Plot -->
-    <iframe src="./plots/tracking_levels_Grade 3.html" width="100%" height="600px"></iframe>
-    <iframe src="./plots/tracking_levels_Grade 4.html" width="100%" height="600px"></iframe>
+    <!-- Centered first plot -->
+    <div class="plot-container">
+        <iframe src="./plots/student_performance_priority.html"></iframe>
+    </div>
+
+    <!-- Two side-by-side plots -->
+    <div class="grid-container">
+        <iframe src="./plots/tracking_levels_Grade 3.html"></iframe>
+        <iframe src="./plots/tracking_levels_Grade 4.html"></iframe>
+    </div>
 </body>
 </html>
