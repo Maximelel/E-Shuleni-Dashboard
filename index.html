@@ -1,112 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Shuleni Learning Progress</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        h1 {
-            margin: 10px 0;
-            color: #333;
-        }
-
-        /* Flex container for first plot and image */
-        .top-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px; /* Space between iframe and image */
-            padding: 10px;
-        }
-
-        .top-container iframe {
-            width: 65%;
-            height: 300px;
-            border: none;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
-            background-color: white;
-        }
-
-        .priority-image {
-            width: 30%; /* Adjust width to fit beside iframe */
-            max-width: 350px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Grid container for two side-by-side plots */
-        .grid-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 10px;
-        }
-
-        .grid-container iframe {
-            flex: 1;
-            min-width: 45%;
-            height: 500px;
-            border: none;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-
-        /* Responsive layout */
-        @media (max-width: 900px) {
-            .top-container {
-                flex-direction: column;
-            }
-
-            .top-container iframe, .priority-image {
-                width: 80%;
-            }
-
-            .grid-container {
-                flex-direction: column;
-            }
-
-            .grid-container iframe {
-                width: 80%;
-                min-width: auto;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Shuleni Learning Progress</title>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      margin: 10px 0;
+      color: #333;
+    }
+    .top-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+    }
+    .top-container img {
+      width: 30%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
+    }
+    .chart-container {
+      background-color: #fff;
+      margin: 15px auto;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .filter-controls {
+      margin-bottom: 10px;
+    }
+    .filter-controls input {
+      padding: 5px;
+      margin-right: 5px;
+    }
+    #plot1, #plot2 {
+      width: 100%;
+      height: 450px;
+    }
+    /* Responsive layout tweaks */
+    @media (max-width: 900px) {
+      .top-container {
+        flex-direction: column;
+      }
+      .top-container iframe, .top-container img {
+        width: 80%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>E-Shuleni Pilot 2025: Learning Progress</h1>
+  <h1>E-Shuleni Pilot 2025: Learning Progress</h1>
 
-    <!-- Container for first plot and image -->
-    <div class="top-container">
-        <iframe src="./plots/student_performance_priority.html"></iframe>
-        <img src="./images/priority_groups.png" alt="Performance Priority Levels" class="priority-image">
-    </div>
+  <!-- Top container (plot + image) -->
+  <div class="top-container">
+    <!-- If you still want to keep the first iframe, you can do so here -->
+    <iframe 
+      src="./plots/student_performance_priority.html" 
+      style="width: 65%; height: 300px; border: none; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);">
+    </iframe>
 
-    <!-- Two side-by-side plots -->
-    <div class="grid-container">
-        <iframe src="./plots/tracking_levels_Grade 3.html"></iframe>
-        <iframe src="./plots/tracking_levels_Grade 4.html"></iframe>
+    <img src="./images/priority_groups.png" alt="Performance Priority Levels">
+  </div>
+
+  <!-- ====================================== 
+       Example Chart #1 with filter
+       (Replace this example data/layout 
+        with what's in "tracking_lessons_Grade 3.html")
+       ====================================== -->
+  <div class="chart-container">
+    <h2>Grade 3 – Number of Lessons Completed</h2>
+    <div class="filter-controls">
+      <input type="text" id="studentName1" placeholder="Type student name here">
+      <button onclick="filterChart1()">Show Only This Student</button>
+      <button onclick="showAllChart1()">Show All</button>
     </div>
-    <!-- Two side-by-side plots -->
-    <div class="grid-container">
-        <iframe src="./plots/tracking_perf_Grade 3.html"></iframe>
-        <iframe src="./plots/tracking_perf_Grade 4.html"></iframe>
+    <div id="plot1"></div>
+  </div>
+
+  <!-- ======================================
+       Example Chart #2 with filter
+       (Replace with data from "tracking_lessons_Grade 4.html" or similar)
+       ====================================== -->
+  <div class="chart-container">
+    <h2>Grade 4 – Number of Lessons Completed</h2>
+    <div class="filter-controls">
+      <input type="text" id="studentName2" placeholder="Type student name here">
+      <button onclick="filterChart2()">Show Only This Student</button>
+      <button onclick="showAllChart2()">Show All</button>
     </div>
-    <!-- Two side-by-side plots -->
-    <div class="grid-container">
-        <iframe src="./plots/tracking_lessons_Grade 3.html"></iframe>
-        <iframe src="./plots/tracking_lessons_Grade 4.html"></iframe>
-    </div>
-</body>
+    <div id="plot2"></div>
+  </div>
+
+  <!-- Repeat more chart containers if you have 6 total line plots. -->
+
+  <script>
+    // ----------------------------
+    // Example data for Chart #1
+    // ----------------------------
+    var trace1_1 = {
+      x: ['2025-02-01','2025-02-05','2025-02-10'],
+      y: [2, 8, 15],
+      mode: 'lines',
+      name: 'ALVIN URIO'
+    };
+    var trace1_2 = {
+      x: ['2025-02-01','2025-02-05','2025-02-10'],
+      y: [1, 5, 20],
+      mode: 'lines',
+      name: 'ALICE AKYOO'
+    };
+    // Add as many traces as needed for Grade 3
+    var dataPlot1 = [trace1_1, trace1_2];
+
+    var layoutPlot1 = {
+      title: 'Learning Progress for Grade 3',
+      xaxis: { title: 'Date' },
+      yaxis: { title: 'Number of Lessons Completed' }
+    };
+
+    // Initialize Chart #1
+    Plotly.newPlot('plot1', dataPlot1, layoutPlot1);
+
+    // Filter function for Chart #1
+    function filterChart1() {
+      var inputName = document.getElementById('studentName1').value.trim().toLowerCase();
+      // Build an "update" array that toggles each trace's visibility
+      var update = dataPlot1.map(trace => {
+        return (trace.name.toLowerCase() === inputName) 
+          ? { visible: true }
+          : { visible: 'legendonly' };
+      });
+      Plotly.update('plot1', update, {});
+    }
+
+    // Show all traces again for Chart #1
+    function showAllChart1() {
+      var update = dataPlot1.map(() => ({ visible: true }));
+      Plotly.update('plot1', update, {});
+    }
+
+    // ----------------------------
+    // Example data for Chart #2
+    // ----------------------------
+    var trace2_1 = {
+      x: ['2025-02-01','2025-02-05','2025-02-10'],
+      y: [5, 11, 18],
+      mode: 'lines',
+      name: 'JOHN DOE'
+    };
+    var trace2_2 = {
+      x: ['2025-02-01','2025-02-05','2025-02-10'],
+      y: [2, 7, 15],
+      mode: 'lines',
+      name: 'JANE DOE'
+    };
+    // Add more traces as needed for Grade 4
+    var dataPlot2 = [trace2_1, trace2_2];
+
+    var layoutPlot2 = {
+      title: 'Learning Progress for Grade 4',
+      xaxis: { title: 'Date' },
+      yaxis: { title: 'Number of Lessons Completed' }
+    };
+
+    // Initialize Chart #2
+    Plotly.newPlot('plot2', dataPlot2, layoutPlot2);
+
+    // Filter function for Chart #2
+    function filterChart2() {
+      var inputName = document.getElementById('studentName2').value.trim().toLowerCase();
+      var update = dataPlot2.map(trace => {
+        return (trace.name.toLowerCase() === inputName)
+          ? { visible: true }
+          : { visible: 'legendonly' };
+      });
+      Plotly.update('plot2', update, {});
+    }
+
+    // Show all function for Chart #2
+    function showAllChart2() {
+      var update = dataPlot2.map(() => ({ visible: true }));
+      Plotly.update('plot2', update, {});
+    }
+
+    // Repeat the above pattern for your other 4 charts
+  </script>
 </body>
 </html>
