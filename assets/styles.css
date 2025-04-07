@@ -35,7 +35,7 @@ nav a {
 
 nav a.active,
 nav a:hover {
-  background-color: #0a9396;
+  background-color: #e2e608;
   text-decoration: none;
 }
 
@@ -97,7 +97,7 @@ nav a:hover {
 }
 
 .text-block h2 {
-  color: #005f73;
+  color: #051c8f;
   margin-bottom: 0.5rem;
 }
 
