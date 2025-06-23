@@ -4,39 +4,78 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>E-Shuleni Learning Progress</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <!-- Link to Tailwind CSS for modern styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Use a modern, clean font */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc; /* light gray background */
+    }
+    /* Simple active state for navigation */
+    nav a.active {
+      color: #3b82f6; /* blue-500 */
+      font-weight: 500;
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <h1>E-Shuleni Pilot 2025</h1>
-    <nav>
-      <a href="index.html">Dashboard</a>
-      <a href="assessments_enuma.html" class="active">Impact Analysis</a>
-      <a href="intervention.html">Intervention</a>
-    </nav>
+<body class="text-gray-800">
+
+  <!-- Header Section -->
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-900">E-Shuleni Pilot 2025</h1>
+      <nav class="flex space-x-6 text-lg">
+        <a href="#dashboard" class="text-gray-600 hover:text-blue-500 transition">Dashboard</a>
+        <a href="#impact" class="active text-gray-600 hover:text-blue-500 transition">Impact Analysis</a>
+        <a href="#intervention" class="text-gray-600 hover:text-blue-500 transition">Intervention</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="content-container">
-    <section class="text-block">
-      <h2>Baseline Assessment</h2>
-      <p>
-        This page presents results from the baseline assessment of the E-Shuleni pilot program via the Enuma app.
-        Scope of assessment:
-        <ul>
-          <li>Baseline: done between 15th Jan and 10th of Feb</li>
-          <li>Midline: coming...(June)</li>
-          <li>Endline: coming... (December)</li>
+  <!-- Main Content Area -->
+  <main class="container mx-auto px-6 py-12">
+    
+    <!-- Introductory Text Block -->
+    <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+      <h2 class="text-3xl font-bold mb-4 text-gray-900">Baseline Assessment</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        This page presents results from the baseline assessment of the E-Shuleni pilot program via the Enuma app. The scope of the assessment is as follows:
       </p>
+      <ul class="list-disc list-inside mt-4 text-lg text-gray-700 space-y-2">
+        <li><span class="font-semibold">Baseline:</span> Completed between Jan 15th and Feb 10th.</li>
+        <li><span class="font-semibold">Midline:</span> Coming soon (June).</li>
+        <li><span class="font-semibold">Endline:</span> Coming soon (December).</li>
+      </ul>
     </section>
 
-    <section class="iframe-block">
-      <iframe src="./plots/baseline_assessment_english_march.html"></iframe>
-      <iframe src="./plots/baseline_assessment_english_june.html"></iframe>
+    <!-- Iframe container: Uses Flexbox for side-by-side layout on medium screens and up -->
+    <section class="flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0">
+      
+      <!-- Left Plot -->
+      <div class="flex-1 bg-white p-4 rounded-lg shadow-md">
+         <h3 class="text-xl font-bold mb-4 text-center text-gray-900">English Assessment (March)</h3>
+         <!-- NOTE: Replace this placeholder src with your actual plot URL -->
+         <iframe class="w-full h-[500px] border-0 rounded-md" src="./plots/baseline_assessment_english_march.html" onerror="this.src='https://placehold.co/800x500/e0e7ff/3730a3?text=March+Plot+Not+Found'"></iframe>
+      </div>
+      
+      <!-- Right Plot -->
+      <div class="flex-1 bg-white p-4 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold mb-4 text-center text-gray-900">English Assessment (June)</h3>
+        <!-- NOTE: Replace this placeholder src with your actual plot URL -->
+        <iframe class="w-full h-[500px] border-0 rounded-md" src="./plots/baseline_assessment_english_june.html" onerror="this.src='https://placehold.co/800x500/d1fae5/047857?text=June+Plot+Not+Found'"></iframe>
+      </div>
+
     </section>
   </main>
 
-  <footer>
-    <p>© Selfless Solutions</p>
+  <!-- Footer Section -->
+  <footer class="mt-16 py-6 bg-white border-t">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-gray-500">© 2025 Selfless Solutions</p>
+    </div>
   </footer>
+
 </body>
 </html>
