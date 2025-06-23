@@ -8,6 +8,11 @@
   
   <!-- === START: Minimal CSS for side-by-side layout === -->
   <style>
+    .content-container {
+      max-width: 90%; /* Set the container to be 90% of the screen width */
+      margin: 0 auto; /* This keeps the container centered on the page */
+    }
+
     .iframe-block {
       display: flex; /* Use flexbox for layout */
       flex-direction: row; /* This is the key change to enforce side-by-side layout */
@@ -46,10 +51,15 @@
       </p>
     </section>
 
-    <!-- This section now displays its content side-by-side due to the CSS above -->
+    <!-- This section contains the two side-by-side plots -->
     <section class="iframe-block">
       <iframe src="./plots/baseline_assessment_english_march.html"></iframe>
       <iframe src="./plots/baseline_assessment_english_june.html"></iframe>
+    </section>
+
+    <!-- This section contains the single, full-width plot -->
+    <section class="iframe-block" style="margin-top: 40px;"> <!-- Added some margin for spacing -->
+      <iframe src="./plots/baseline_assessment_english_lineplots.html" style="height: 700px;"></iframe>
     </section>
   </main>
 
